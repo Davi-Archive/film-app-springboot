@@ -61,4 +61,14 @@ public class Review implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", user=" + user +
+                ", movie=" + movie +
+                '}';
+    }
 }

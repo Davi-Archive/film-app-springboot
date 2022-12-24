@@ -98,4 +98,17 @@ public class Movie implements Serializable {
     public void setGenre(Genre genre) {
         this.genre = genre;
     }
+
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", subTitle='" + subTitle + '\'' +
+                ", year=" + year +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", synopsis='" + synopsis + '\'' +
+                '}';
+    }
 }

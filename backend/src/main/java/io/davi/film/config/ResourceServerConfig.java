@@ -23,7 +23,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final String[] PUBLIC = {"/oauth/token", "/h2/**","/users/**"};
 
-    private static final String[] OPERATOR_OR_ADMIN = {"/products/**", "/categories/**"};
+    private static final String[] MEMBER = {"/reviews/**"};
 
     private static final String[] ADMIN = {"/users/**"};
 
@@ -44,6 +44,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(PUBLIC).permitAll()
+                .antMatchers(MEMBER).hasAnyRole("MEMBER")
                 .anyRequest().authenticated();
     }
 }

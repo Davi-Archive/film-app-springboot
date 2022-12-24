@@ -4,11 +4,15 @@ import io.davi.film.entities.Movie;
 import io.davi.film.entities.Review;
 import io.davi.film.entities.User;
 
+import javax.validation.constraints.NotBlank;
+
 public class ReviewDTO {
     private Long id;
+
+    @NotBlank(message = "Campo requerido")
     private String text;
     private Long movieId;
-    private User user;
+    private UserDTO user;
 
     public ReviewDTO() {
     }
@@ -17,15 +21,16 @@ public class ReviewDTO {
         this.id = id;
         this.text = text;
         this.movieId = movieId;
-        this.user = user;
+        this.user = new UserDTO(user);
     }
 
-    public ReviewDTO(Review entity, Movie movie) {
+    public ReviewDTO(Review entity) {
         id = entity.getId();
         text = entity.getText();
-        movieId = movie.getId();
-        user = entity.getUser();
+        movieId = entity.getMovie().getId();
+        user = new UserDTO(entity.getUser());
     }
+
 
     public Long getId() {
         return id;
@@ -51,11 +56,11 @@ public class ReviewDTO {
         this.movieId = movieId;
     }
 
-    public User getUser() {
+    public UserDTO getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDTO user) {
         this.user = user;
     }
 }

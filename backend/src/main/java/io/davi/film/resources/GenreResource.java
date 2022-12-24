@@ -2,7 +2,6 @@ package io.davi.film.resources;
 
 
 import io.davi.film.dto.GenreDTO;
-import io.davi.film.entities.Genre;
 import io.davi.film.services.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

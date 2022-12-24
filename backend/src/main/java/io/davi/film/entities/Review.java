@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class Review implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
     @ManyToOne
@@ -17,6 +18,7 @@ public class Review implements Serializable {
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 
     public Movie getMovie() {

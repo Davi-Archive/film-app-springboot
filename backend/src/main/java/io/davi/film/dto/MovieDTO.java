@@ -1,13 +1,7 @@
 package io.davi.film.dto;
 
-import io.davi.film.entities.Genre;
 import io.davi.film.entities.Movie;
-import io.davi.film.entities.Review;
-
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.HashSet;
-import java.util.Set;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 public class MovieDTO {
     private Long id;
@@ -16,12 +10,13 @@ public class MovieDTO {
     private Integer year;
     private String imgUrl;
     private String synopsis;
-    private Genre genre;
+    private GenreDTO genre;
+
 
     public MovieDTO() {
     }
 
-    public MovieDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis, Genre genre) {
+    public MovieDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis, GenreDTO genre) {
         this.id = id;
         this.title = title;
         this.subTitle = subTitle;
@@ -30,14 +25,15 @@ public class MovieDTO {
         this.synopsis = synopsis;
         this.genre = genre;
     }
-    public MovieDTO(Movie entity, Genre genre) {
+
+    public MovieDTO(Movie entity) {
         id = entity.getId();
         title = entity.getTitle();
         subTitle = entity.getSubTitle();
         year = entity.getYear();
         imgUrl = entity.getImgUrl();
         synopsis = entity.getSynopsis();
-        this.genre = genre;
+        genre = new GenreDTO(entity.getGenre());
     }
 
     public Long getId() {
@@ -88,11 +84,11 @@ public class MovieDTO {
         this.synopsis = synopsis;
     }
 
-    public Genre getGenre() {
+    public GenreDTO getGenre() {
         return genre;
     }
 
-    public void setGenre(Genre genre) {
+    public void setGenre(GenreDTO genre) {
         this.genre = genre;
     }
 }

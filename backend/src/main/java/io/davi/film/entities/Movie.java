@@ -1,5 +1,7 @@
 package io.davi.film.entities;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -15,9 +17,12 @@ public class Movie implements Serializable {
     private String subTitle;
     private Integer year;
     private String imgUrl;
+    @Column(columnDefinition="TEXT")
     private String synopsis;
    @ManyToOne
     private Genre genre;
+
+   @JsonIgnore
    @OneToMany(mappedBy = "movie")
    private Set<Review> reviews = new HashSet<>();
 
